@@ -116,3 +116,22 @@ document.writeln("<hr>" + entries.next().value);
 document.writeln("<hr>" + entries.next().value);
 
 console.log(entries);
+
+// Test evenements
+console.log(
+  "-----------------------------------------------------------------------------"
+);
+console.log("Test evenements");
+
+const button = document.querySelector('input[type="button"]');
+console.log(button);
+
+//Sol 1
+// button.addEventListener("click", () => {
+//   alert("j'ai clické!!!");
+// });
+
+// sol 2
+button.onclick = () => {
+  alert("j'ai clické!!!");
+};
