@@ -4,7 +4,7 @@ import * as ModuleObject from "./module.js";
 console.log(
   "-----------------------------------------------------------------------------"
 );
-console.log("Fater import module");
+console.log("Test import module");
 
 console.log(ModuleObject.hello_1());
 console.log(ModuleObject.hello_2());

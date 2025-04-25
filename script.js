@@ -145,6 +145,7 @@ let promise = new Promise((resolve, reject) => {
   resolve("c est super");
 });
 
+console.log("Test promise");
 promise
   .then((value) => {
     console.log("Promise tenue" + value);
@@ -181,7 +182,6 @@ const URLs = [
   "https://api.github.com/users/olivecap",
   "https://api.github.com/users/999",
   "https://api.github.com/users/chucknorris",
-  "https://api.github/users/chucknorris",
 ];
 const allURLs = URLs.map((url) => checkURL(url));
 
@@ -196,3 +196,33 @@ Promise.all(allURLs)
       console.log(error);
     });
   });
+
+const users = [
+  { name: "user1", age: 34 },
+  { name: "toto", age: 45 },
+];
+
+// 1 Recuperer les utilisateur
+function getUsers() {
+  return users;
+}
+
+// 2 Afficher les utilisateurs
+async function printUsers() {
+  try {
+    console.log("async function printUsers()");
+    const userDatas = await getUsers();
+    userDatas.forEach((user) => {
+      console.log(user.name);
+      console.log(user.age);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// Time out just to log at end
+setTimeout(() => {
+  console.log("Test async await");
+  printUsers();
+}, 1000);
