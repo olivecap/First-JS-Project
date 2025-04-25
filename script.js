@@ -135,3 +135,64 @@ console.log(button);
 button.onclick = () => {
   alert("j'ai clické!!!");
 };
+
+// Test asynchrone
+console.log(
+  "-----------------------------------------------------------------------------"
+);
+console.log("Test asynchrone");
+let promise = new Promise((resolve, reject) => {
+  resolve("c est super");
+});
+
+promise
+  .then((value) => {
+    console.log("Promise tenue" + value);
+  })
+  .catch((reason) => {
+    console.log("Promise reject" + reason);
+  })
+  .finally(() => {
+    console.log("Promise finally");
+  });
+
+//Check URL
+// La promesse doit checker si l'url est verifié
+// du coup meme si une erreur ou l'urkl est pas bonne on renvoie resolve car on a bien validé l'url
+function checkURL(url) {
+  return new Promise((resolve, reject) => {
+    // Check url
+    fetch(url)
+      .then((response) => {
+        if (response.ok) {
+          resolve("Adresse valide:" + url);
+        } else {
+          resolve("Adresse invalide" + url);
+        }
+      })
+      .catch((error) => {
+        resolve("Erreur :" + error);
+      });
+  });
+}
+
+// Check urls
+const URLs = [
+  "https://api.github.com/users/olivecap",
+  "https://api.github.com/users/999",
+  "https://api.github.com/users/chucknorris",
+  "https://api.github/users/chucknorris",
+];
+const allURLs = URLs.map((url) => checkURL(url));
+
+Promise.all(allURLs)
+  .then((results) => {
+    results.forEach((result) => {
+      console.log(result);
+    });
+  })
+  .catch((errors) => {
+    errors.forEach((error) => {
+      console.log(error);
+    });
+  });
